@@ -1,19 +1,17 @@
 import React, { useState, useContext } from "react";
 import { TextField, Button, Switch, FormControlLabel } from "@material-ui/core";
-import ValidacoesCadastro from "../../contexts/ValidacoesCadastro"
+import ValidacoesCadastro from "../../contexts/ValidacoesCadastro";
 import useErros from "../../hooks/useErros";
 
-function DadosPessoais({ aoEnviar }) {
+function DadosPessoais({ aoEnviar, voltarForm }) {
   const [nome, setNome] = useState("");
   const [sobrenome, setSobrenome] = useState("");
   const [cpf, setCpf] = useState("");
   const [promocoes, setPromocoes] = useState(true);
   const [novidades, setNovidades] = useState(false);
-  const validacoes = useContext(ValidacoesCadastro)
+  const validacoes = useContext(ValidacoesCadastro);
   const [erros, validarCampos, possoEnviar] = useErros(validacoes);
 
-
- 
   return (
     <form
       onSubmit={(event) => {
@@ -96,6 +94,16 @@ function DadosPessoais({ aoEnviar }) {
 
       <Button type="submit" variant="contained" color="primary">
         Próximo
+      </Button>
+      <Button
+        onClick={(event) => {
+          event.preventDefault();
+          voltarForm();
+        }}
+        type="button"
+        variant="contained"
+      >
+        Voltar
       </Button>
     </form>
   );

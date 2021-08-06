@@ -1,6 +1,6 @@
 import React, { useState } from "react";
 import { TextField, Button } from "@material-ui/core";
-function DadosEntrega({ aoEnviar }) {
+function DadosEntrega({ aoEnviar, voltarForm }) {
   const [cep, setCep] = useState("");
   const [endereco, setEndereco] = useState("");
   const [numero, setNumero] = useState("");
@@ -77,6 +77,17 @@ function DadosEntrega({ aoEnviar }) {
       />
       <Button type="submit" variant="contained" color="primary" fullWidth>
         Finalizar Cadastro
+      </Button>
+      <Button
+        onClick={(event) => {
+          event.preventDefault();
+          voltarForm();
+        }}
+        type="button"
+        variant="contained"
+        fullWidth
+      >
+        Voltar
       </Button>
     </form>
   );

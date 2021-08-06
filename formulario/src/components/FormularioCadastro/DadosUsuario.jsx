@@ -6,7 +6,7 @@ import useErros from "../../hooks/useErros";
 function DadosUsuario({ aoEnviar }) {
   const [email, setEmail] = useState("");
   const [senha, setSenha] = useState("");
-  const validacoes = useContext(ValidacoesCadastro)
+  const validacoes = useContext(ValidacoesCadastro);
   const [erros, validarCampos, possoEnviar] = useErros(validacoes);
 
   return (

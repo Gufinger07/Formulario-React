@@ -2,9 +2,10 @@ import React, { useState, useEffect } from "react";
 import DadosPessoais from "./DadosPessoais";
 import DadosUsuario from "./DadosUsuario";
 import DadosEntrega from "./DadosEntrega";
-import { Typography, Stepper, Step, StepLabel } from "@material-ui/core";
+import Finalizacao from "./Finalizacao";
+import { Stepper, Step, StepLabel } from "@material-ui/core";
 
-function FormularioCadastro({ aoEnviar }) {
+function FormularioCadastro({ aoEnviar, voltarForm }) {
   const [etapaAtual, setEtapaAtual] = useState(0);
   const [dadosColetados, setDados] = useState({});
 
@@ -16,9 +17,9 @@ function FormularioCadastro({ aoEnviar }) {
 
   const formularios = [
     <DadosUsuario aoEnviar={coletarDados} />,
-    <DadosPessoais aoEnviar={coletarDados} />,
-    <DadosEntrega aoEnviar={coletarDados} />,
-    <Typography variant="h5">Obrigado pelo Cadastro!</Typography>,
+    <DadosPessoais aoEnviar={coletarDados} voltarForm={voltar}/>,
+    <DadosEntrega aoEnviar={coletarDados} voltarForm={voltar}/>,
+    <Finalizacao voltarForm={voltar}/>
   ];
 
   function coletarDados(dados) {
@@ -27,6 +28,10 @@ function FormularioCadastro({ aoEnviar }) {
   }
   function proximo() {
     setEtapaAtual(etapaAtual + 1);
+  }
+
+  function voltar() {
+    setEtapaAtual(etapaAtual - 1)
   }
   return (
     <>
